@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Список покупок</title>
+</head>
+<body>
+<a> <h2> Список покупок за неделю </h2></a>
+<div th:switch="${weekReport}">
+    <div th:case="*">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Возраст</th>
+                <th>Наименование товара</th>
+                <th>Количество</th>
+                <th>Сумма</th>
+                <th>Дата</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="purchase : ${weekReport}">
+                <td th:text="${purchase.id}"></td>
+                <td th:text="${purchase.name}"></td>
+                <td th:text="${purchase.lastname}"></td>
+                <td th:text="${purchase.age}"></td>
+                <td th:text="${purchase.purchaseItem}"></td>
+                <td th:text="${purchase.count}"></td>
+                <td th:text="${purchase.amount}"></td>
+                <td th:text="${purchase.purchaseDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>
