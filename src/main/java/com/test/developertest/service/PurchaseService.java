@@ -20,4 +20,8 @@ public interface PurchaseService {
     List<Purchase> bestSellsOfWeek();
 
     List<String> bestProductOfMonth();
+
+    List<String> nameOfHalfAYear();
+
+    List<String> productFor18();
 }

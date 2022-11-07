@@ -17,6 +17,4 @@ public interface DaoPurchase {
 
     void editPurchase(Purchase purchase);
 
-    List<Purchase> bestProductOfMonth();
-
 }

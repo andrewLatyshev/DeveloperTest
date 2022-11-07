@@ -26,8 +26,4 @@ public class ProductServiceImpl implements ProductService {
         return daoProduct.getProduct(id);
     }
 
-
-//    public Product getProductByName() {
-//        return n;
-//    }
 }

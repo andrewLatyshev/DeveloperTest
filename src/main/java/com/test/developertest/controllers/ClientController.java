@@ -26,17 +26,13 @@ public class ClientController {
         this.purchaseService = purchaseService;
         this.productService = productService;
     }
-
-//    @GetMapping("index")
-//    public String showAllUsers(Model model, Principal principal) {
-//        model.addAttribute("purchases", purchaseService.getAllPurchases());
-////        model.addAttribute("user", userService.showUserByName(principal.getName()));
-//        return "/adminPage";
-//    }
-
     @GetMapping("/index")
     public ResponseEntity<List<Purchase>> showAllPurchases() {
-        return new ResponseEntity<>(purchaseService.getAllPurchases(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(purchaseService.getAllPurchases(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("aboutThisPurchase/{id}")
@@ -52,27 +48,43 @@ public class ClientController {
 
     @PostMapping("/addPurchase")
     public ResponseEntity<Purchase> createPurchaseForm(@RequestBody Purchase purchase) {
-        purchaseService.addPurchase(purchase);
-        return new ResponseEntity<>(purchase, HttpStatus.OK);
+        try {
+            purchaseService.addPurchase(purchase);
+            return new ResponseEntity<>(purchase, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Purchase> deletePurchase(@PathVariable Long id) {
-        purchaseService.deletePurchase(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            purchaseService.deletePurchase(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("update")
     public ResponseEntity<Purchase> updatePurchase(@RequestBody Purchase purchase) {
-        purchaseService.editPurchase(purchase);
-        return new ResponseEntity<>(purchase, HttpStatus.OK);
+        try {
+            purchaseService.editPurchase(purchase);
+            return new ResponseEntity<>(purchase, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
     }
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> showAllProducts() {
-        HttpHeaders responseHeaders = new HttpHeaders();
-        return new ResponseEntity<>(productService.getProductList(), responseHeaders, HttpStatus.OK);
+        try {
+            HttpHeaders responseHeaders = new HttpHeaders();
+            return new ResponseEntity<>(productService.getProductList(), responseHeaders, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }

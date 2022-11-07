@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+    <changeSet id="init-01" author="andrew">
+        <sql>
+            CREATE TABLE `purchases`
+            (
+                id               int NOT NULL,
+                age             int DEFAULT NULL,
+                `name`              varchar(255) DEFAULT NULL,
+                `lastname`          varchar(255) DEFAULT NULL,
+                `purchaseitem`      varchar (255) DEFAULT NULL,
+                `count`             int DEFAULT NULL,
+                `amount`            int DEFAULT NULL,
+                `purchasedate`      varchar(255) DEFAULT NULL,
+                PRIMARY KEY (id)
+            )
+        </sql>
+    </changeSet>
+
+    <changeSet id="init-02" author="andrew">
+        <sql>
+            CREATE TABLE `items`
+            (
+                id              int NOT NULL,
+                name            varchar(255) DEFAULT NULL,
+                item_amount     int          null,
+                PRIMARY KEY (id)
+            )
+        </sql>
+    </changeSet>
+
+    <changeSet id="init-03" author="andrew">
+        <sql>
+            INSERT INTO test.purchases (id, age, name, purchaseitem, lastname, count, amount, purchasedate) VALUES (1, 33, 'Андрей', 'Телевизор', 'Латышев', 2, 30000, '2022-10-22');
+            INSERT INTO test.purchases (id, age, name, purchaseitem, lastname, count, amount, purchasedate) VALUES (2, 18, 'Клиент2', 'Смартфон', 'ФИО2', 2, 30000, '2022-10-26');
+            INSERT INTO test.purchases (id, age, name, purchaseitem, lastname, count, amount, purchasedate) VALUES (3, 18, 'Клиент3', 'Телевизор', 'ФИО3', 2, 60000, '2022-10-28');
+            INSERT INTO test.purchases (id, age, name, purchaseitem, lastname, count, amount, purchasedate) VALUES (4, 18, 'Клиент2', 'Телевизор', 'ФИО2', 2, 60000, '2022-11-01');
+            INSERT INTO test.purchases (id, age, name, purchaseitem, lastname, count, amount, purchasedate) VALUES (5, 35, 'Андрей', 'Наушники', 'Латышев', 6, 20000, '2022-10-12');
+            INSERT INTO test.purchases (id, age, name, purchaseitem, lastname, count, amount, purchasedate) VALUES (6, 35, 'Елена', 'Соковыжималка', 'Калинина', 1, 2000, '2022-11-05');
+            INSERT INTO test.purchases (id, age, name, purchaseitem, lastname, count, amount, purchasedate) VALUES (7, 31, 'Ксения', 'Клавиатура', 'Максимова', 1, 5000, '2022-10-31');
+            INSERT INTO test.purchases (id, age, name, purchaseitem, lastname, count, amount, purchasedate) VALUES (8, 18, 'Клиент2', 'Соковыжималка', 'ФИО2', 2, 10000, '2022-11-03');
+            INSERT INTO test.purchases (id, age, name, purchaseitem, lastname, count, amount, purchasedate) VALUES (9, 35, 'Андрей', 'Соковыжималка', 'Латышев', 1, 5000, '2022-11-02');
+            INSERT INTO test.purchases (id, age, name, purchaseitem, lastname, count, amount, purchasedate) VALUES (10, 18, 'Маша', 'Телевизор', 'Пупкина', 1, 30000, '2022-11-07');
+
+
+        </sql>
+    </changeSet>
+    <changeSet id="init-04" author="andrew">
+        <sql>
+            INSERT INTO test.items (id, name, item_amount) VALUES (1, 'Телевизор', 1);
+            INSERT INTO test.items (id, name, item_amount) VALUES (2, 'Смартфон', 1);
+            INSERT INTO test.items (id, name, item_amount) VALUES (3, 'Соковыжималка', 1);
+            INSERT INTO test.items (id, name, item_amount) VALUES (4, 'Наушники', 1);
+            INSERT INTO test.items (id, name, item_amount) VALUES (5, 'Клавиатура', 1);
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

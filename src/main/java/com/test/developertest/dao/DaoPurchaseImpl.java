@@ -39,8 +39,4 @@ public class DaoPurchaseImpl implements DaoPurchase{
         entityManager.merge(purchase);
     }
 
-    @Override
-    public List<Purchase> bestProductOfMonth() {
-        return entityManager.createQuery("SELECT name FROM Purchase name where name = 'count'", Purchase.class).getResultList();
-    }
 }

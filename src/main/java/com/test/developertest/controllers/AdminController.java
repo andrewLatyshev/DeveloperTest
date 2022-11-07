@@ -45,4 +45,16 @@ public class AdminController {
         return "/month_report";
     }
 
+    @GetMapping("half-report")
+    public String reportOfHalf(Model model) {
+        model.addAttribute("halfReport", purchaseService.nameOfHalfAYear());
+        return "/half_report";
+    }
+
+    @GetMapping("popular18-report")
+    public String notTeenProduct(Model model) {
+        model.addAttribute("product", purchaseService.productFor18());
+        return "/popular18";
+    }
+
 }
